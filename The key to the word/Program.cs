@@ -153,9 +153,9 @@ namespace The_key_to_the_word
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Уровни сложности:");
             Console.ResetColor();
-            Console.WriteLine("- Легкий: Простые загадки для новичков.");
-            Console.WriteLine("- Нормальный: Загадки средней сложности, требующие логического мышления.");
-            Console.WriteLine("- Сложный: Самые сложные загадки для настоящих эрудитов.");
+            Console.WriteLine("- Легкий: Простые загадки для новичков. Количество попыток: 10.");
+            Console.WriteLine("- Нормальный: Загадки средней сложности, требующие логического мышления. Количество попыток: 5.");
+            Console.WriteLine("- Сложный: Самые сложные загадки для настоящих эрудитов. Количество попыток: 3.");
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Команды:");
@@ -215,49 +215,50 @@ namespace The_key_to_the_word
         }
         static void Lite()
         {
+            Console.Clear();
+            string cmdLite;
+            bool isOpenLiteGame = true;
+            List<string> wordLite = new List<string>{
+        "яблоко", "солнце", "книга", "мяч", "часы",
+        "ручка", "стул", "собака", "кошка", "дом",
+        "цветок", "молоко", "хлеб", "рыба", "луна",
+        "зонт", "снег", "самолёт", "телефон", "ключ" };
+
+            List<string> riddleLite = new List<string>{
+        "Круглое, румяное, с дерева упало, к нам на стол попало.", // Яблоко
+        "На небе светит ярко, греет всех ребят. Без него на улице холодно и мрак.", // Солнце
+        "Не дерево, а с листами, не человек, а рассказывает.", // Книга
+        "Его бьют, а он не плачет, только выше прыгать хочет.", // Мяч
+        "Без ног, но ходят, без рук, но показывают.", // Часы
+        "С ней можно писать, рисовать, но нельзя есть.", // Ручка
+        "Четыре ноги, спинка есть, но не бегает и не летает.", // Стул
+        "Друг человека, лает, но не говорит.", // Собака
+        "Мягкая, пушистая, ловит мышей и мурлычет.", // Кошка
+        "Стены, крыша, окна, двери - в нём живут люди и звери.", // Дом
+        "Растёт на клумбе, пахнет, но не говорит.", // Цветок
+        "Белое, полезное, даёт корова.", // Молоко
+        "Мягкий, душистый, на столе главный.", // Хлеб
+        "Плавает в воде, но не тонет, имеет плавники, но не птица.", // Рыба
+        "Ночью светит, но не греет, на небе видна, но не звезда.", // Луна
+        "От дождя защищает, но сам мокнет.", // Зонт
+        "Белый, пушистый, зимой падает, летом тает.", // Снег
+        "Летит, но не птица, гудит, но не пчела.", // Самолёт
+        "Говорит, но не человек, звонит, но не колокольчик.", // Телефон
+        "Открывает замок, но не книгу." // Ключ
+    };
+
+            while (isOpenLiteGame)
             {
-                Console.Clear();
-                string cmdLite;
-                bool isOpenLiteGame = true;
-                List<string> wordLite = new List<string>{
-                "яблоко", "солнце", "книга", "мяч", "часы",
-                "ручка", "стул", "собака", "кошка", "дом",
-                "цветок", "молоко", "хлеб", "рыба", "луна",
-                "зонт", "снег", "самолёт", "телефон", "ключ" };
+                bool isOpenLiteGuessing = true;
 
-                List<string> riddleLite = new List<string>{
-                "Круглое, румяное, с дерева упало, к нам на стол попало.", // Яблоко
-                "На небе светит ярко, греет всех ребят. Без него на улице холодно и мрак.", // Солнце
-                "Не дерево, а с листами, не человек, а рассказывает.", // Книга
-                "Его бьют, а он не плачет, только выше прыгать хочет.", // Мяч
-                "Без ног, но ходят, без рук, но показывают.", // Часы
-                "С ней можно писать, рисовать, но нельзя есть.", // Ручка
-                "Четыре ноги, спинка есть, но не бегает и не летает.", // Стул
-                "Друг человека, лает, но не говорит.", // Собака
-                "Мягкая, пушистая, ловит мышей и мурлычет.", // Кошка
-                "Стены, крыша, окна, двери - в нём живут люди и звери.", // Дом
-                "Растёт на клумбе, пахнет, но не говорит.", // Цветок
-                "Белое, полезное, даёт корова.", // Молоко
-                "Мягкий, душистый, на столе главный.", // Хлеб
-                "Плавает в воде, но не тонет, имеет плавники, но не птица.", // Рыба
-                "Ночью светит, но не греет, на небе видна, но не звезда.", // Луна
-                "От дождя защищает, но сам мокнет.", // Зонт
-                "Белый, пушистый, зимой падает, летом тает.", // Снег
-                "Летит, но не птица, гудит, но не пчела.", // Самолёт
-                "Говорит, но не человек, звонит, но не колокольчик.", // Телефон
-                "Открывает замок, но не книгу." // Ключ
-            };
-                while (isOpenLiteGame)
+                Random randLite = new Random();
+                int indexWordLite = randLite.Next(0, wordLite.Count);
+                int indexRiddleLite = indexWordLite;
+                while (isOpenLiteGuessing)
                 {
-                    bool isOpenLiteGuessing = true;
-
-                    Random randLite = new Random();
-                    int indexWordLite = randLite.Next(0, wordLite.Count);
-                    int indexRiddleLite = indexWordLite;
-
-                    while (isOpenLiteGuessing)
+                    int attemptLite = 9;
+                    for (; attemptLite >= 0; attemptLite--)
                     {
-
                         if (wordLite.Count == 0)
                         {
                             Console.Clear();
@@ -271,10 +272,10 @@ namespace The_key_to_the_word
                             Console.WriteLine("Доступные команды:");
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("╔═════════════════\n" +
-                                              "╠ Да - вернуться в менюу\n" +
+                                              "╠ Да - вернуться в меню\n" +
                                               "╚═════════════════");
                             Console.ResetColor();
-                            Console.WriteLine("Команда: ");
+                            Console.Write("Команда: ");
                             Console.ForegroundColor = ConsoleColor.Red;
                             cmdLite = Console.ReadLine().ToLower();
                             Console.ResetColor();
@@ -289,6 +290,7 @@ namespace The_key_to_the_word
                                     break;
                             }
                         }
+
                         Console.ResetColor();
                         Console.Write("Загадка: ");
                         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -298,8 +300,10 @@ namespace The_key_to_the_word
                         Console.ForegroundColor = ConsoleColor.Red;
                         string answerLite = Console.ReadLine().ToLower();
                         Console.ResetColor();
+
                         if (answerLite == wordLite[indexWordLite])
                         {
+
                             bool isOpenRightAnswer = true;
 
                             string rightAnswer = wordLite[indexWordLite];
@@ -340,10 +344,10 @@ namespace The_key_to_the_word
                                         Console.Clear();
                                         isOpenRightAnswer = false;
                                         isOpenLiteGuessing = true;
+                                        isOpenLiteGame = true;
                                         break;
 
                                     case "меню":
-
                                         Console.Clear();
                                         isOpenLiteGame = false;
                                         isOpenLiteGuessing = false;
@@ -351,12 +355,11 @@ namespace The_key_to_the_word
                                         break;
 
                                     default:
-
                                         Error();
-
                                         break;
                                 }
                             }
+                            break;
                         }
                         else
                         {
@@ -364,7 +367,30 @@ namespace The_key_to_the_word
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.Write("[Упс..] ");
                             Console.ResetColor();
-                            Console.WriteLine("Вы не отгадали, попробуйте еще раз.");
+                            Console.WriteLine($"Вы не отгадали, попробуйте еще раз. Осталось попыток: {attemptLite}");
+                        }
+                        string rightAnswerAtt0 = wordLite[indexWordLite];
+                        if (attemptLite == 0)
+                        {
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("[Увы!] ");
+                            Console.ResetColor();
+                            Console.WriteLine("Попытки закончились. Возвращаемся в меню.");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("[Увы!] ");
+                            Console.ResetColor();
+                            Console.Write("Этим словом было: ");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine(rightAnswerAtt0);
+                            Console.ResetColor();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("[Увы!] ");
+                            Console.ResetColor();
+                            Console.WriteLine("Нажмите любую клавишу для продолжения.");
+                            Console.ReadKey();
+                            isOpenLiteGuessing = false;
+                            isOpenLiteGame = false;
                         }
                     }
                 }
@@ -411,117 +437,144 @@ namespace The_key_to_the_word
                     Random randNormal = new Random();
                     int indexWordNormal = randNormal.Next(0, wordNormal.Count);
                     int indexRiddleNormal = indexWordNormal;
-
                     while (isOpenNormalGuessing)
                     {
-
-                        if (wordNormal.Count == 0)
+                        int attemptNormal = 4;
+                        for (; attemptNormal >= 0; attemptNormal--)
                         {
-                            Console.Clear();
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write("[Урааа!] ");
-                            Console.ResetColor();
-                            Console.WriteLine("Вы отгадали все слова!");
-
-                            Console.WriteLine("Вернемся в меню?\n");
-
-                            Console.WriteLine("Доступные команды:");
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("╔═════════════════\n" +
-                                              "╠ Да - вернуться в менюу\n" +
-                                              "╚═════════════════");
-                            Console.ResetColor();
-                            Console.WriteLine("Команда: ");
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            cmdNormal = Console.ReadLine().ToLower();
-                            Console.ResetColor();
-                            switch (cmdNormal)
+                            if (wordNormal.Count == 0)
                             {
-                                case "да":
-                                    Console.Clear();
-                                    isOpenNormalGuessing = false;
-                                    break;
-                                default:
-                                    Error();
-                                    break;
-                            }
-                        }
-                        Console.ResetColor();
-                        Console.Write("Загадка: ");
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine(riddleNormal[indexRiddleNormal]);
-                        Console.ResetColor();
-                        Console.Write("Ваш ответ: ");
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        string answerNormal = Console.ReadLine().ToLower();
-                        Console.ResetColor();
-                        if (answerNormal == wordNormal[indexWordNormal])
-                        {
-                            bool isOpenRightAnswer = true;
-
-                            string rightAnswer = wordNormal[indexWordNormal];
-
-                            wordNormal.RemoveAt(indexWordNormal);
-                            riddleNormal.RemoveAt(indexRiddleNormal);
-
-                            while (isOpenRightAnswer)
-                            {
-                                isOpenNormalGuessing = false;
-                                isOpenNormalGame = false;
-
                                 Console.Clear();
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.Write("[Урааа!] ");
                                 Console.ResetColor();
-                                Console.WriteLine("Вы отгадали слово!");
-                                Console.Write("Этим словом было: ");
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine($"{rightAnswer}\n");
-                                Console.ResetColor();
+                                Console.WriteLine("Вы отгадали все слова!");
+
+                                Console.WriteLine("Вернемся в меню?\n");
 
                                 Console.WriteLine("Доступные команды:");
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine("╔═════════════════\n" +
-                                                  "╠ Попробовать/еще - отгадать другую загадку\n" +
-                                                  "╠ Меню - вернуться в меню\n" +
+                                                  "╠ Да - вернуться в менюу\n" +
                                                   "╚═════════════════");
                                 Console.ResetColor();
-                                Console.Write("Команда: ");
+                                Console.WriteLine("Команда: ");
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 cmdNormal = Console.ReadLine().ToLower();
                                 Console.ResetColor();
                                 switch (cmdNormal)
                                 {
-                                    case "попробовать":
-                                    case "еще":
+                                    case "да":
                                         Console.Clear();
-                                        isOpenRightAnswer = false;
-                                        isOpenNormalGuessing = true;
-                                        break;
-
-                                    case "меню":
-
-                                        Console.Clear();
-                                        isOpenNormalGame = false;
                                         isOpenNormalGuessing = false;
-                                        isOpenRightAnswer = false;
                                         break;
-
                                     default:
-
                                         Error();
-
                                         break;
                                 }
                             }
-                        }
-                        else
-                        {
-                            Console.Clear();
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Write("[Упс..] ");
                             Console.ResetColor();
-                            Console.WriteLine("Вы не отгадали, попробуйте еще раз.");
+                            Console.Write("Загадка: ");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(riddleNormal[indexRiddleNormal]);
+                            Console.ResetColor();
+                            Console.Write("Ваш ответ: ");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            string answerNormal = Console.ReadLine().ToLower();
+                            Console.ResetColor();
+                            if (answerNormal == wordNormal[indexWordNormal])
+                            {
+                                bool isOpenRightAnswer = true;
+
+                                string rightAnswer = wordNormal[indexWordNormal];
+
+                                wordNormal.RemoveAt(indexWordNormal);
+                                riddleNormal.RemoveAt(indexRiddleNormal);
+
+                                while (isOpenRightAnswer)
+                                {
+                                    isOpenNormalGuessing = false;
+                                    isOpenNormalGame = false;
+
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.Write("[Урааа!] ");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Вы отгадали слово!");
+                                    Console.Write("Этим словом было: ");
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine($"{rightAnswer}\n");
+                                    Console.ResetColor();
+
+                                    Console.WriteLine("Доступные команды:");
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine("╔═════════════════\n" +
+                                                      "╠ Попробовать/еще - отгадать другую загадку\n" +
+                                                      "╠ Меню - вернуться в меню\n" +
+                                                      "╚═════════════════");
+                                    Console.ResetColor();
+                                    Console.Write("Команда: ");
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    cmdNormal = Console.ReadLine().ToLower();
+                                    Console.ResetColor();
+                                    switch (cmdNormal)
+                                    {
+                                        case "попробовать":
+                                        case "еще":
+                                            Console.Clear();
+                                            isOpenRightAnswer = false;
+                                            isOpenNormalGuessing = true;
+                                            isOpenNormalGame = true;
+                                            break;
+
+                                        case "меню":
+
+                                            Console.Clear();
+                                            isOpenNormalGame = false;
+                                            isOpenNormalGuessing = false;
+                                            isOpenRightAnswer = false;
+                                            break;
+
+                                        default:
+
+                                            Error();
+
+                                            break;
+                                    }
+                                }
+                                break;
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("[Упс..] ");
+                                Console.ResetColor();
+                                Console.WriteLine($"Вы не отгадали, попробуйте еще раз. Осталось попыток: {attemptNormal}");
+                            }
+                            string rightAnswerAtt0 = wordNormal[indexWordNormal];
+                            if (attemptNormal == 0)
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("[Увы!] ");
+                                Console.ResetColor();
+                                Console.WriteLine("Попытки закончились. Возвращаемся в меню.");
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("[Увы!] ");
+                                Console.ResetColor();
+                                Console.Write("Этим словом было: ");
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine(rightAnswerAtt0);
+                                Console.ResetColor();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("[Увы!] ");
+                                Console.ResetColor();
+                                Console.WriteLine("Нажмите любую клавишу для продолжения.");
+                                Console.ReadKey();
+                                isOpenNormalGuessing = false;
+                                isOpenNormalGame = false;
+                            }
                         }
                     }
                 }
@@ -572,155 +625,188 @@ namespace The_key_to_the_word
 
                     while (isOpenHardGuessing)
                     {
-                        if (wordHard.Count == 0)
+                        int attemptHard = 2;
+                        for (; attemptHard >= 0; attemptHard--)
                         {
-                            Console.Clear();
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write("[Урааа!] ");
-                            Console.ResetColor();
-                            Console.WriteLine("Вы отгадали все слова!");
-
-                            Console.WriteLine("Вернемся в меню?\n");
-
-                            Console.WriteLine("Доступные команды:");
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("╔═════════════════\n" +
-                                              "╠ Да - вернуться в менюу\n" +
-                                              "╚═════════════════");
-                            Console.ResetColor();
-                            Console.WriteLine("Команда: ");
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            cmdHard = Console.ReadLine().ToLower();
-                            Console.ResetColor();
-                            switch (cmdHard)
+                            if (wordHard.Count == 0)
                             {
-                                case "да":
-                                    Console.Clear();
-                                    isOpenHardGuessing = false;
-                                    break;
-                                default:
-                                    Error();
-                                    break;
-                            }
-                        }
-                        Console.ResetColor();
-                        Console.Write("Загадка: ");
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine(riddleHard[indexRiddleHard]);
-                        Console.ResetColor();
-                        Console.Write("Ваш ответ: ");
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        string answerHard = Console.ReadLine().ToLower();
-                        Console.ResetColor();
-                        string rightAnswer = wordHard[indexWordHard];
-                        if (answerHard != wordHard[indexWordHard])
-                        {
-                            Console.SetCursorPosition(0, 0);
-                            Console.Clear();
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.Write("[Упс..] ");
-                            Console.ResetColor();
-                            Console.WriteLine("Вы не отгадали, попробуйте еще раз.");
-                        }
-                        if (answerHard == wordHard[indexWordHard])
-                        {
-                            bool isOpenRightAnswer = true;
-
-                            wordHard.RemoveAt(indexWordHard);
-                            riddleHard.RemoveAt(indexRiddleHard);
-
-                            while (isOpenRightAnswer)
-                            {
-                                isOpenHardGuessing = false;
-                                isOpenHardGame = false;
-
                                 Console.Clear();
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.Write("[Урааа!] ");
                                 Console.ResetColor();
-                                Console.WriteLine("Вы отгадали слово!");
-                                Console.Write("Этим словом было: ");
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine($"{rightAnswer}\n");
-                                Console.ResetColor();
+                                Console.WriteLine("Вы отгадали все слова!");
+
+                                Console.WriteLine("Вернемся в меню?\n");
 
                                 Console.WriteLine("Доступные команды:");
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine("╔═════════════════\n" +
-                                                  "╠ Попробовать/еще - отгадать другую загадку\n" +
-                                                  "╠ Меню - вернуться в меню\n" +
+                                                  "╠ Да - вернуться в менюу\n" +
                                                   "╚═════════════════");
                                 Console.ResetColor();
-                                Console.Write("Команда: ");
+                                Console.WriteLine("Команда: ");
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 cmdHard = Console.ReadLine().ToLower();
                                 Console.ResetColor();
                                 switch (cmdHard)
                                 {
-                                    case "попробовать":
-                                    case "еще":
+                                    case "да":
                                         Console.Clear();
-                                        isOpenRightAnswer = false;
-                                        isOpenHardGuessing = true;
-                                        break;
-
-                                    case "меню":
-
-                                        Console.Clear();
-                                        isOpenHardGame = false;
                                         isOpenHardGuessing = false;
-                                        isOpenRightAnswer = false;
                                         break;
-
                                     default:
-
                                         Error();
-
                                         break;
                                 }
                             }
-                        }
-                        if (answerHard == "не знаю")
-                        {
-                            bool IDKhard = true;
-                            wordHard.RemoveAt(indexWordHard);
-                            riddleHard.RemoveAt(indexRiddleHard);
-                            while (IDKhard)
+                            Console.ResetColor();
+                            Console.Write("Загадка: ");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine(riddleHard[indexRiddleHard]);
+                            Console.ResetColor();
+                            Console.Write("Ваш ответ: ");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            string answerHard = Console.ReadLine().ToLower();
+                            Console.ResetColor();
+                            string rightAnswer = wordHard[indexWordHard];
+                            if (answerHard != wordHard[indexWordHard])
                             {
                                 Console.SetCursorPosition(0, 0);
                                 Console.Clear();
-                                Console.Clear();
-                                Console.ForegroundColor = ConsoleColor.Yellow;
-                                Console.Write("[Упс...] ");
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("[Упс..] ");
                                 Console.ResetColor();
-                                Console.WriteLine("Вы не отгадали слово!");
+                                Console.WriteLine($"Вы не отгадали, попробуйте еще раз. Осталось попыток: {attemptHard}");
+                            }
+                            if (answerHard == wordHard[indexWordHard])
+                            {
+                                bool isOpenRightAnswer = true;
+
+                                wordHard.RemoveAt(indexWordHard);
+                                riddleHard.RemoveAt(indexRiddleHard);
+
+                                while (isOpenRightAnswer)
+                                {
+                                    isOpenHardGuessing = false;
+                                    isOpenHardGame = false;
+
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.Write("[Урааа!] ");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Вы отгадали слово!");
+                                    Console.Write("Этим словом было: ");
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine($"{rightAnswer}\n");
+                                    Console.ResetColor();
+
+                                    Console.WriteLine("Доступные команды:");
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine("╔═════════════════\n" +
+                                                      "╠ Попробовать/еще - отгадать другую загадку\n" +
+                                                      "╠ Меню - вернуться в меню\n" +
+                                                      "╚═════════════════");
+                                    Console.ResetColor();
+                                    Console.Write("Команда: ");
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    cmdHard = Console.ReadLine().ToLower();
+                                    Console.ResetColor();
+                                    switch (cmdHard)
+                                    {
+                                        case "попробовать":
+                                        case "еще":
+
+                                            Console.Clear();
+                                            isOpenRightAnswer = false;
+                                            isOpenHardGuessing = true;
+                                            isOpenHardGame = true;
+
+                                            break;
+
+                                        case "меню":
+
+                                            Console.Clear();
+                                            isOpenHardGame = false;
+                                            isOpenHardGuessing = false;
+                                            isOpenRightAnswer = false;
+
+                                            break;
+
+                                        default:
+
+                                            Error();
+
+                                            break;
+                                    }
+                                }
+                                break;
+                            }
+                            if (answerHard == "не знаю")
+                            {
+                                bool IDKhard = true;
+                                wordHard.RemoveAt(indexWordHard);
+                                riddleHard.RemoveAt(indexRiddleHard);
+                                while (IDKhard)
+                                {
+                                    Console.SetCursorPosition(0, 0);
+                                    Console.Clear();
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Yellow;
+                                    Console.Write("[Упс...] ");
+                                    Console.ResetColor();
+                                    Console.WriteLine("Вы не отгадали слово!");
+                                    Console.Write("Этим словом было: ");
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine($"{rightAnswer}\n");
+                                    Console.ResetColor();
+
+                                    Console.WriteLine("Доступные команды:");
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    Console.WriteLine("╔═════════════════\n" +
+                                                      "╠ Меню - вернуться в меню\n" +
+                                                      "╚═════════════════");
+                                    Console.ResetColor();
+                                    Console.Write("Команда: ");
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    cmdHard = Console.ReadLine().ToLower();
+                                    Console.ResetColor();
+                                    switch (cmdHard)
+                                    {
+                                        case "меню":
+                                            Console.Clear();
+                                            isOpenHardGame = false;
+                                            isOpenHardGuessing = false;
+                                            IDKhard = false;
+                                            break;
+                                        default:
+                                            Error();
+                                            break;
+                                    }
+                                }
+                                break;
+                            }
+                            string rightAnswerAtt0 = wordHard[indexWordHard];
+                            if (attemptHard == 0)
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("[Увы!] ");
+                                Console.ResetColor();
+                                Console.WriteLine("Попытки закончились. Возвращаемся в меню.");
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.Write("[Увы!] ");
+                                Console.ResetColor();
                                 Console.Write("Этим словом было: ");
                                 Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine($"{rightAnswer}\n");
+                                Console.WriteLine(rightAnswerAtt0);
                                 Console.ResetColor();
-
-                                Console.WriteLine("Доступные команды:");
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("╔═════════════════\n" +
-                                                  "╠ Меню - вернуться в меню\n" +
-                                                  "╚═════════════════");
-                                Console.ResetColor();
-                                Console.Write("Команда: ");
                                 Console.ForegroundColor = ConsoleColor.Red;
-                                cmdHard = Console.ReadLine().ToLower();
+                                Console.Write("[Увы!] ");
                                 Console.ResetColor();
-                                switch (cmdHard)
-                                {
-                                    case "меню":
-                                        Console.Clear();
-                                        isOpenHardGame = false;
-                                        isOpenHardGuessing = false;
-                                        IDKhard = false;
-                                        break;
-                                    default:
-                                        Error();
-                                        break;
-                                }
+                                Console.WriteLine("Нажмите любую клавишу для продолжения.");
+                                Console.ReadKey();
+                                isOpenHardGuessing = false;
+                                isOpenHardGame = false;
                             }
                         }
                     }
