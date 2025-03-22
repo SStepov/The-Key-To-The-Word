@@ -1,4 +1,5 @@
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace The_key_to_the_word
     {
         static void Main(string[] args)
         {
+            Console.InputEncoding = Encoding.Unicode;
+            Console.OutputEncoding = Encoding.Unicode;
             bool isOpen = true;
             bool isOpenMenu = true;
             Console.ForegroundColor = ConsoleColor.Yellow;
